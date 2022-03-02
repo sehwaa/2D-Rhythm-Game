@@ -1,0 +1,29 @@
+{
+	"musics": [
+			{
+				"MUSICNAME" : "잔소리",
+				"BPM" : 112,
+				"DURATION" : "3:34"
+			},
+			{
+				"MUSICNAME" : "Pretty Savage",
+				"BPM" : 152,
+				"DURATION" : "3:21"
+			},
+			{
+				"MUSICNAME" : "Permission To Dance",
+				"BPM" : 125,
+				"DURATION" : "3:08"
+			},
+			{
+				"MUSICNAME": "Dance The Night Away",
+				"BPM": 118,
+				"DURATION" : "3:01"
+			},
+			{
+				"MUSICNAME": "Gimme Gimme",
+				"BPM" : 126,
+				"DURATION": "3:40"
+			}
+		]
+}
