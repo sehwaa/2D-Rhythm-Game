@@ -43,7 +43,7 @@ public class Note : MonoBehaviour
                 }
             }
             Destroy(this.gameObject);
-            print("Miss!");
+            //print("Miss!");
         }
         else if (other.gameObject.name.Contains("Perfect"))
         {

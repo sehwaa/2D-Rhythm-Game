@@ -20,8 +20,7 @@ public class NoteManager : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-
-        if (currentTime >= 60d / bpm)
+        if (currentTime >= 60d / SoundManager.instance.bpm)
         {
             int randomIndex = Random.Range(0, 5);
             GameObject tNote = null;
@@ -46,7 +45,7 @@ public class NoteManager : MonoBehaviour
             }
             GameObject n = Instantiate(tNote, tNote.transform.position, tNote.transform.rotation);
             //notes.Add(n);
-            currentTime -= 60f / bpm;
+            currentTime -= 60f / SoundManager.instance.bpm;
         }
 
     }

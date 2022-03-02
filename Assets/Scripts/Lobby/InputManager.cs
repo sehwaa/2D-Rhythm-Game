@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager instance = null;
+    public string chooseMusicName = null;
     GameObject[] albumArt;
     List<Vector3> originalTransform = new List<Vector3>();
     List<Vector3> originalScale = new List<Vector3>();
@@ -12,6 +15,7 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         albumArt = GameObject.FindGameObjectsWithTag("LOBBY_ALBUMART");
         for (int i = 0; i < albumArt.Length; i++)
         {
@@ -73,6 +77,7 @@ public class InputManager : MonoBehaviour
 
     public void loadScene()
     {
+        chooseMusicName = albumArt[2].transform.GetChild(1).GetComponent<TextMeshPro>().text;
         SceneManager.LoadScene("Game");   
     }
 }
