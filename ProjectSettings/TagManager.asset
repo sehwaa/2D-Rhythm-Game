@@ -8,6 +8,7 @@ TagManager:
   - Note
   - TOUCHZONE
   - JUDJEMENT
+  - LOBBY_ALBUMART
   layers:
   - Default
   - TransparentFX
