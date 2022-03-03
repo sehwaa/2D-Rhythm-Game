@@ -551,7 +551,7 @@ RectTransform:
   m_GameObject: {fileID: 440050345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.748146, y: 0.68407, z: 1}
+  m_LocalScale: {x: 0.7869748, y: 0.68407, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1950017720}
@@ -1337,6 +1337,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 907155849b6564c88b977add001ce643, type: 3}
   - {fileID: 8300000, guid: 080aea53d62e94bed9d2d117dc6cff95, type: 3}
   - {fileID: 8300000, guid: 08b3b08cc2af040e3bd1a67ad5269750, type: 3}
+  playTitle: 
+  bpm: 0
 --- !u!1 &1644505372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,6 +1482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707165843}
   - component: {fileID: 1707165844}
+  - component: {fileID: 1707165845}
   m_Layer: 0
   m_Name: Note
   m_TagString: Untagged
@@ -1514,8 +1517,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03a6ab75499a40ec8962eaa79628e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 105
+  bpm: 0
   notes: []
+--- !u!114 &1707165845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707165842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1726126578
 GameObject:
   m_ObjectHideFlags: 0

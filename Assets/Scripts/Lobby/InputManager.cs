@@ -87,11 +87,8 @@ public class InputManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         print("complete joining room");
-        if (PhotonNetwork.CountOfPlayersInRooms == 2)
-        {
-            if (PhotonNetwork.IsMasterClient)
-                SceneManager.LoadScene("Game");
-        } else if (PhotonNetwork.CountOfPlayersInRooms < 2)
+        
+        if (PhotonNetwork.CountOfPlayersInRooms < 2)
         {
             PlayerCount.SetActive(true);
         }
@@ -100,5 +97,14 @@ public class InputManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connect MasterServer...");
+    }
+
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            if (PhotonNetwork.IsMasterClient)
+                SceneManager.LoadScene("Game");
+        }
     }
 }
