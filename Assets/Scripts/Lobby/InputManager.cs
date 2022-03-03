@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Photon.Pun;
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviourPunCallbacks
 {
     public static InputManager instance = null;
     public string chooseMusicName = null;
+    public GameObject PlayerCount;
+
     GameObject[] albumArt;
     List<Vector3> originalTransform = new List<Vector3>();
     List<Vector3> originalScale = new List<Vector3>();
@@ -78,6 +81,24 @@ public class InputManager : MonoBehaviour
     public void loadScene()
     {
         chooseMusicName = albumArt[2].transform.GetChild(1).GetComponent<TextMeshPro>().text;
-        SceneManager.LoadScene("Game");   
+        PhotonNetwork.JoinOrCreateRoom(chooseMusicName, new Photon.Realtime.RoomOptions { MaxPlayers = 2 }, null);  
+    }
+
+    public override void OnJoinedRoom()
+    {
+        print("complete joining room");
+        if (PhotonNetwork.CountOfPlayersInRooms == 2)
+        {
+            if (PhotonNetwork.IsMasterClient)
+                SceneManager.LoadScene("Game");
+        } else if (PhotonNetwork.CountOfPlayersInRooms < 2)
+        {
+            PlayerCount.SetActive(true);
+        }
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Connect MasterServer...");
     }
 }
