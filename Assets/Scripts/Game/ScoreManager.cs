@@ -57,9 +57,9 @@ public class ScoreManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        if (!PV.IsMine)
+        if (targetPlayer != PhotonNetwork.LocalPlayer)
         {
-            enemyTotal += (int)changedProps["Score"];
+            enemyTotal = (int)changedProps["Score"];
         }
     }
 }
