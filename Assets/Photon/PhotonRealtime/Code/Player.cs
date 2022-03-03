@@ -48,6 +48,11 @@ namespace Photon.Realtime
         /// <summary>Backing field for property.</summary>
         private int actorNumber = -1;
 
+        public void SetCustomProperties(System.Collections.Hashtable hash)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>Identifier of this player in current room. Also known as: actorNumber or actorNumber. It's -1 outside of rooms.</summary>
         /// <remarks>The ID is assigned per room and only valid in that context. It will change even on leave and re-join. IDs are never re-used per room.</remarks>
         public int ActorNumber

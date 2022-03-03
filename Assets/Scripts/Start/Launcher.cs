@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
+    public TMP_InputField inputField;
+
     [SerializeField] public static byte maxPlayerPerRoom = 2;
 
     private void Awake()
@@ -35,6 +38,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
+        PhotonNetwork.NickName = inputField.text;
         Debug.Log("Try connect....");
         PhotonNetwork.JoinLobby();
     }

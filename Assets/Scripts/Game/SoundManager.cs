@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] audioClips;
     public string playTitle;
     public int bpm = 0;
+    public float duration = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,16 @@ public class SoundManager : MonoBehaviour
             if (m.musics[i].MUSICNAME == playTitle)
             {
                 bpm = m.musics[i].BPM;
+                string d = m.musics[i].DURATION;
+                string[] dList = d.Split(":");
+                duration = int.Parse(dList[0]) * 60 + int.Parse(dList[1]);
             }
         }
+    }
+
+    public bool isPlaying()
+    {
+        if (myAudio.isPlaying) return true;
+        return false;
     }
 }

@@ -26,7 +26,34 @@ public class JudgeMent : MonoBehaviour
                     if (notes.Count > 0)
                     {
                         GameObject n = notes[0];
-                        print(n.GetComponent<Note>().state);
+                        Note.State state = n.GetComponent<Note>().state;
+                        switch (state)
+                        {
+                            case Note.State.Perfect:
+                                ScoreManager.instance.sc = "Perfect";
+                                ScoreManager.instance.cb += 1;
+                                ScoreManager.instance.total += ScoreManager.instance.cb * 5;
+                                break;
+                            case Note.State.Cool:
+                                ScoreManager.instance.sc = "Cool";
+                                ScoreManager.instance.cb += 1;
+                                ScoreManager.instance.total += ScoreManager.instance.cb * 4;
+                                break;
+                            case Note.State.Good:
+                                ScoreManager.instance.sc = "Good";
+                                ScoreManager.instance.cb += 1;
+                                ScoreManager.instance.total += ScoreManager.instance.cb * 3;
+                                break;
+                            case Note.State.Bad:
+                                ScoreManager.instance.sc = "Bad";
+                                ScoreManager.instance.cb = 0;
+                                break;
+                            case Note.State.Miss:
+                                ScoreManager.instance.sc = "Miss";
+                                ScoreManager.instance.cb = 0;
+                                break;
+
+                        }
                         Destroy(n);
                         notes.RemoveAt(0);
                     }

@@ -88,7 +88,7 @@ public class InputManager : MonoBehaviourPunCallbacks
     {
         print("complete joining room");
         
-        if (PhotonNetwork.CountOfPlayersInRooms < 2)
+        if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
         {
             PlayerCount.SetActive(true);
         }
@@ -106,5 +106,6 @@ public class InputManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient)
                 SceneManager.LoadScene("Game");
         }
+
     }
 }

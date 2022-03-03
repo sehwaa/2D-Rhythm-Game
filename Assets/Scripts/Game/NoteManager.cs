@@ -8,6 +8,7 @@ public class NoteManager : MonoBehaviourPunCallbacks
 {
     public int bpm = 0;
     float currentTime = 0;
+    float playTime = 0;
     PhotonView PV;
 
     public List<GameObject> notes = new List<GameObject>();
@@ -28,8 +29,9 @@ public class NoteManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void CreateNote()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && playTime <= SoundManager.instance.duration)
         {
+            playTime += Time.deltaTime;
             currentTime += Time.deltaTime;
             if (currentTime >= 60d / SoundManager.instance.bpm)
             {

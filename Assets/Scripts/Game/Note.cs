@@ -42,6 +42,8 @@ public class Note : MonoBehaviour
                     break;
                 }
             }
+            ScoreManager.instance.sc = "Miss";
+            ScoreManager.instance.cb = 0;
             Destroy(this.gameObject);
             //print("Miss!");
         }
