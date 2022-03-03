@@ -44,10 +44,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         score.text = sc.ToString();
         combo.text = cb.ToString();
 
-        if (PV.IsMine)
-        {
-            SetScore();
-        }
+        SetScore();
     }
 
     void SetScore()
@@ -55,16 +52,14 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         playerScore.text = total.ToString();
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
         enemyScore.text = enemyTotal.ToString();
+        hash["Score"] = total;
     }
 
     public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        if (!PV.IsMine && targetPlayer == PV.Owner)
+        if (!PV.IsMine)
         {
             enemyTotal += (int)changedProps["Score"];
-        } else if (PV.IsMine)
-        {
-            changedProps["Score"] = playerScore.text;
         }
     }
 }
