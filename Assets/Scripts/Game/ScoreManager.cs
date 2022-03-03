@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     public Note.State nowState;
 
     PhotonView PV;
-    Hashtable hash = new Hashtable();
+    ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     {
         playerScore.text = total.ToString();
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        enemyScore.text = enemyTotal.ToString();
     }
 
     public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
@@ -61,6 +62,9 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         if (!PV.IsMine && targetPlayer == PV.Owner)
         {
             enemyTotal += (int)changedProps["Score"];
+        } else if (PV.IsMine)
+        {
+            changedProps["Score"] = playerScore.text;
         }
     }
 }
