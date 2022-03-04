@@ -33,19 +33,23 @@ public class NoteManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient && playTime <= SoundManager.instance.duration)
         {
             playTime += Time.deltaTime;
-            currentTime += Time.deltaTime;
-            if (currentTime >= 60d / SoundManager.instance.bpm)
+
+            if (playTime <= SoundManager.instance.duration)
             {
-                int randomIndex = Random.Range(0, 5);
+                currentTime += Time.deltaTime;
+                if (currentTime >= 60d / SoundManager.instance.bpm)
+                {
+                    int randomIndex = Random.Range(0, 5);
                 
-                PV.RPC("InstantiateNote", RpcTarget.All, randomIndex);
-                //notes.Add(n);
-                currentTime -= 60f / SoundManager.instance.bpm;
+                    PV.RPC("InstantiateNote", RpcTarget.All, randomIndex);
+                    //notes.Add(n);
+                    currentTime -= 60f / SoundManager.instance.bpm;
+                }
             }
-        }
-        else if (PhotonNetwork.IsMasterClient && playTime > SoundManager.instance.duration + 2)
-        {
-            SceneManager.LoadScene("Result");
+            else if (playTime > SoundManager.instance.duration + 2)
+            {
+                SceneManager.LoadScene("Result");
+            }
         }
     }
 
