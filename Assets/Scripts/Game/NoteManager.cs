@@ -30,7 +30,7 @@ public class NoteManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void CreateNote()
     {
-        if (PhotonNetwork.IsMasterClient && playTime <= SoundManager.instance.duration)
+        if (PhotonNetwork.IsMasterClient)
         {
             playTime += Time.deltaTime;
 
