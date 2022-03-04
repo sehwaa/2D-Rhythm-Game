@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance = null;
-    public TextMeshPro playerNickName;
-    public TextMeshPro enemyNickName;
-    public TextMeshPro playerScore;
-    public TextMeshPro enemyScore;
+    public TextMeshProUGUI playerNickName;
+    public TextMeshProUGUI enemyNickName;
+    public TextMeshProUGUI playerScore;
+    public TextMeshProUGUI enemyScore;
+    public TextMeshProUGUI playerVictory;
+    public TextMeshProUGUI enemyVictory;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (int.Parse(playerScore.text) > int.Parse(enemyScore.text))
+        {
+            playerVictory.text = "Victory";
+        }
+        else if (int.Parse(playerScore.text) < int.Parse(enemyScore.text))
+        {
+            enemyVictory.text = "Victory";
+        }
+        else if (int.Parse(playerScore.text) == int.Parse(enemyScore.text))
+        {
+            enemyVictory.text = "Draw";
+            playerVictory.text = "Draw";
+        }
+    }
+
+    public void back()
+    {
+        PhotonNetwork.LeaveLobby();
+        SceneManager.LoadScene("Lobby");
     }
 }
