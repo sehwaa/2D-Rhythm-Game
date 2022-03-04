@@ -48,8 +48,7 @@ public class NoteManager : MonoBehaviourPunCallbacks
             }
             else if (playTime > SoundManager.instance.duration + 2)
             {
-                GameManager.instance.playerNickName.text = PhotonNetwork.LocalPlayer.NickName;
-                GameManager.instance.enemyNickName.text = PhotonNetwork.PlayerListOthers[0].NickName;
+                
                 SceneManager.LoadScene("Result");
             }
         }
