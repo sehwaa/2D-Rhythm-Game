@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public static GameManager instance = null;
     public TextMeshProUGUI playerNickName;
     public TextMeshProUGUI enemyNickName;
     public TextMeshProUGUI playerScore;
@@ -18,7 +17,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        playerNickName.text = PhotonNetwork.LocalPlayer.NickName;
+        enemyNickName.text = PhotonNetwork.PlayerListOthers[0].NickName;
+        playerScore.text = ScoreManager.instance.total.ToString();
+        enemyScore.text = ScoreManager.instance.enemyTotal.ToString();
     }
 
     // Update is called once per frame

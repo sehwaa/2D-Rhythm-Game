@@ -25,6 +25,10 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     PhotonView PV;
     ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +57,6 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
         enemyScore.text = enemyTotal.ToString();
         hash["Score"] = total;
-        GameManager.instance.playerScore.text = total.ToString();
-        GameManager.instance.enemyScore.text = enemyScore.ToString();
     }
 
     public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
