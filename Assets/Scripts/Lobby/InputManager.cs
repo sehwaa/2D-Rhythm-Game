@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviourPunCallbacks
     public string chooseMusicName = null;
     public GameObject PlayerCount;
 
-    GameObject[] albumArt;
+    public GameObject[] albumArt;
     List<Vector3> originalTransform = new List<Vector3>();
     List<Vector3> originalScale = new List<Vector3>();
 
@@ -19,10 +19,10 @@ public class InputManager : MonoBehaviourPunCallbacks
     void Start()
     {
         instance = this;
-        albumArt = GameObject.FindGameObjectsWithTag("LOBBY_ALBUMART");
+        //albumArt = GameObject.FindGameObjectsWithTag("LOBBY_ALBUMART");
         for (int i = 0; i < albumArt.Length; i++)
         {
-            Vector3 v = new Vector3(albumArt[i].GetComponent<RectTransform>().anchoredPosition.x, albumArt[i].GetComponent<RectTransform>().anchoredPosition.y, 0);
+            Vector3 v = new Vector3(albumArt[i].GetComponent<RectTransform>().localPosition.x, albumArt[i].GetComponent<RectTransform>().localPosition.y, 0);
             Vector3 s = albumArt[i].transform.localScale;
             originalTransform.Add(v);
             originalScale.Add(s);
@@ -31,6 +31,11 @@ public class InputManager : MonoBehaviourPunCallbacks
 
     // Update is called once per frame
     void Update()
+    {
+        ChangeAlbumArt();
+    }
+
+    void ChangeAlbumArt()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
@@ -42,32 +47,33 @@ public class InputManager : MonoBehaviourPunCallbacks
                 {
                     if (i == 0)
                     {
-                        albumArt[i].GetComponent<RectTransform>().anchoredPosition = originalTransform[albumArt.Length-1];
+                        albumArt[i].GetComponent<RectTransform>().localPosition = originalTransform[albumArt.Length - 1];
                         albumArt[i].transform.localScale = originalScale[albumArt.Length - 1];
                         t[albumArt.Length - 1] = albumArt[i];
-                    } else
+                    }
+                    else
                     {
-                        albumArt[i].GetComponent<RectTransform>().anchoredPosition = originalTransform[i-1];
-                        albumArt[i].transform.localScale = originalScale[i-1];
+                        albumArt[i].GetComponent<RectTransform>().localPosition = originalTransform[i - 1];
+                        albumArt[i].transform.localScale = originalScale[i - 1];
                         t[i - 1] = albumArt[i];
                     }
                 }
                 albumArt = t;
-
-            } else if (touchDeltaPosition.x > 0)
+            }
+            else if (touchDeltaPosition.x > 0)
             {
                 GameObject[] t = new GameObject[albumArt.Length];
                 for (int i = 0; i < albumArt.Length; i++)
                 {
-                    if (i == albumArt.Length-1)
+                    if (i == albumArt.Length - 1)
                     {
-                        albumArt[i].GetComponent<RectTransform>().anchoredPosition = originalTransform[0];
+                        albumArt[i].GetComponent<RectTransform>().localPosition = originalTransform[0];
                         albumArt[i].transform.localScale = originalScale[0];
                         t[0] = albumArt[i];
                     }
                     else
                     {
-                        albumArt[i].GetComponent<RectTransform>().anchoredPosition = originalTransform[i + 1];
+                        albumArt[i].GetComponent<RectTransform>().localPosition = originalTransform[i + 1];
                         albumArt[i].transform.localScale = originalScale[i + 1];
                         t[i + 1] = albumArt[i];
                     }

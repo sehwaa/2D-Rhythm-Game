@@ -26,11 +26,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (int.Parse(playerScore.text) > int.Parse(enemyScore.text))
+        if (int.Parse(playerScore.text) < int.Parse(enemyScore.text))
         {
             playerVictory.text = "Victory";
         }
-        else if (int.Parse(playerScore.text) < int.Parse(enemyScore.text))
+        else if (int.Parse(playerScore.text) > int.Parse(enemyScore.text))
         {
             enemyVictory.text = "Victory";
         }
