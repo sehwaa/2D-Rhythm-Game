@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class NoteManager : MonoBehaviourPunCallbacks
 {
@@ -41,6 +42,10 @@ public class NoteManager : MonoBehaviourPunCallbacks
                 //notes.Add(n);
                 currentTime -= 60f / SoundManager.instance.bpm;
             }
+        }
+        else if (PhotonNetwork.IsMasterClient && playTime > SoundManager.instance.duration + 2)
+        {
+            SceneManager.LoadScene("Result");
         }
     }
 
